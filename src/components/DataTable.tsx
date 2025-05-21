@@ -10,7 +10,20 @@ const DataTable = () => {
   const [data, setData] = useState<TcpData[]>([]);
 
   useEffect(() => {
-    const socket = io(window.location.origin);
+    const socket = io(window.location.origin, {
+      path: '/socket.io/',
+      transports: ['websocket', 'polling'],
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000,
+    });
+
+    socket.on('connect', () => {
+      console.log('Connected to WebSocket server');
+    });
+
+    socket.on('connect_error', (error) => {
+      console.error('WebSocket connection error:', error);
+    });
 
     socket.on('tcpData', (newData: TcpData) => {
       setData((prevData) => [...prevData, newData]);

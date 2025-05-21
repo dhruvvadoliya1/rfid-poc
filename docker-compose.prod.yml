@@ -3,6 +3,7 @@ version: '3.8'
 services:
   frontend:
     build: .
+    container_name: frontend
     ports:
       - "80:80"
     depends_on:
@@ -20,15 +21,18 @@ services:
 
   backend:
     build: ./backend
+    container_name: backend
     ports:
-      - "127.0.0.1:8080:8080"  # Only accessible within container network
-      - "8081:8081"            # TCP port exposed to public
+      - "127.0.0.1:8080:8080"  # WebSocket port
+      - "8081:8081"            # TCP port
     environment:
       - NODE_ENV=production
       - TZ=UTC
     restart: unless-stopped
     networks:
-      - app-network
+      app-network:
+        aliases:
+          - backend
     logging:
       driver: "json-file"
       options:
@@ -37,4 +41,8 @@ services:
 
 networks:
   app-network:
-    driver: bridge 
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/16 

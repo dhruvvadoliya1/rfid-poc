@@ -12,6 +12,13 @@ interface TcpData {
   cors: {
     origin: '*',
   },
+  port: 8080,
+  path: '/socket.io',
+  transports: ['websocket', 'polling'],
+  allowEIO3: true,
+  serveClient: false,
+  namespace: '/',
+  host: '0.0.0.0'
 })
 export class TcpGateway implements OnModuleInit {
   @WebSocketServer()
@@ -19,7 +26,7 @@ export class TcpGateway implements OnModuleInit {
 
   private tcpServer: net.Server;
   private readonly logger = new Logger(TcpGateway.name);
-  private readonly TCP_PORT = 8081; // Changed to 9091
+  private readonly TCP_PORT = 8081;
 
   onModuleInit() {
     this.initTcpServer();
@@ -59,7 +66,7 @@ export class TcpGateway implements OnModuleInit {
       }
     });
 
-    this.tcpServer.listen(this.TCP_PORT, () => {
+    this.tcpServer.listen(this.TCP_PORT, '0.0.0.0', () => {
       this.logger.log(`TCP server listening on port ${this.TCP_PORT}`);
     });
   }
