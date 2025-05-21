@@ -37,7 +37,7 @@ export class TcpGateway implements OnModuleInit {
       this.logger.log('Reader connected');
 
       socket.on('data', (data) => {
-        const hexData = data.toString('hex');
+        const hexData = data.toString('ascii');
         this.logger.log(`Received: ${hexData}`);
         
         const tcpData: TcpData = {
