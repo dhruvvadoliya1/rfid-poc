@@ -19,7 +19,7 @@ export class TcpGateway implements OnModuleInit {
 
   private tcpServer: net.Server;
   private readonly logger = new Logger(TcpGateway.name);
-  private readonly TCP_PORT = 9091; // Changed to 9091
+  private readonly TCP_PORT = 8081; // Changed to 9091
 
   onModuleInit() {
     this.initTcpServer();

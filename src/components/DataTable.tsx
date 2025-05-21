@@ -25,7 +25,7 @@ const DataTable = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">TCP Data Log</h1>
       <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-4">
-        <p>Connect your TCP client to <span className="font-mono">localhost:9091</span> to see incoming data.</p>
+        <p>Connect your TCP client to <span className="font-mono">localhost:8081</span> to see incoming data.</p>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300">

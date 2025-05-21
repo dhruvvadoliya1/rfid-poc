@@ -29,7 +29,7 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow ssh
 sudo ufw allow 80/tcp
-sudo ufw allow 9091/tcp
+sudo ufw allow 8081/tcp
 sudo ufw --force enable
 
 # Create app directory
@@ -45,5 +45,5 @@ sudo docker-compose -f docker-compose.prod.yml up -d --build
 echo "Deployment complete! Please ensure you've copied your application files to ~/app/"
 echo "Your server is now running with the following ports open:"
 echo "- Port 80 (HTTP/Web Interface)"
-echo "- Port 9091 (TCP Server)"
+echo "- Port 8081 (TCP Server)"
 echo "- Port 22 (SSH)" 
