@@ -23,7 +23,7 @@ const DataTable = () => {
   const [tagCounts, setTagCounts] = useState<Map<string, TagCount>>(new Map());
 
   useEffect(() => {
-    const socket = io('http://localhost:8080', {
+    const socket = io(window.location.origin, {
       path: '/socket.io/',
       transports: ['websocket', 'polling'],
       reconnectionAttempts: 5,
